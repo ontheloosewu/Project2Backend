@@ -27,17 +27,3 @@ public class StudentServiceTests
         Assertions.assertNotEquals(0, savedStudent.getS_id());
     }
 }
-
-
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name="s_id")
-//    private int s_id;
-//
-//    @Column(name="first_name")
-//    private String first_name;
-//
-//    @Column(name="last_name")
-//    private String last_name;
-//
-//    @Column(name="guardian_username")
-//    private String guardian_username;
