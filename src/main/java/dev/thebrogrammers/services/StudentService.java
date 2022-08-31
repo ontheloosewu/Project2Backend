@@ -1,4 +1,8 @@
 package dev.thebrogrammers.services;
 
-public interface StudentService {
+import dev.thebrogrammers.entities.Student;
+
+public interface StudentService
+{
+    Student registerStudent(Student student);
 }
