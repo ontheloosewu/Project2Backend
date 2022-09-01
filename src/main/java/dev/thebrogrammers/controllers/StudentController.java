@@ -23,7 +23,7 @@ public class StudentController {
 
     @GetMapping("/students/{name}")
     @ResponseBody
-    public Student getStudents(@PathVariable String name) {
+    public Student getStudent(@PathVariable String name) {
         return this.studentService.getStudentByName(name);
     }
 
