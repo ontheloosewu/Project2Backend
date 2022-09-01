@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,13 +24,7 @@ public class GradeServiceImpl implements GradeService {
     }
 
     @Override
-    public Grade getGradesByStudentId(int sId) {
-        Optional<Grade> possibleGrade = this.gradeRepo.findById(sId);
-
-        if(possibleGrade.isPresent()){
-            return possibleGrade.get();
-        }else{
-            throw new GradeNotFoundException();
-        }
+    public List<Grade> getGradesByStudentId(int sId) {
+        return this.gradeRepo.findAllGradesBysId(sId);
     }
 }

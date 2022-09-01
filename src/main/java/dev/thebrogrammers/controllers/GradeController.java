@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class GradeController {
 
@@ -23,8 +25,8 @@ public class GradeController {
 
     @GetMapping("/grades/{id}")
     @ResponseBody
-    public Grade getGradesByStudentId(@PathVariable String id){
-        int gId = Integer.parseInt(id);
-        return this.gradeService.getGradesByStudentId(gId);
+    public List<Grade> getGradesByStudentId(@PathVariable String id){
+        int sId = Integer.parseInt(id);
+        return this.gradeService.getGradesByStudentId(sId);
     }
 }
