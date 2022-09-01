@@ -1,6 +1,7 @@
 package dev.thebrogrammers.services;
 
 import dev.thebrogrammers.entities.Student;
+import dev.thebrogrammers.exceptions.InvalidNameFormatException;
 import dev.thebrogrammers.repos.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,6 @@ public class StudentServiceImpl implements StudentService{
         if (names.length == 2)
             return this.studentRepo.findByFirstNameAndLastName(names[0], names[1]);
         else
-            throw new RuntimeException("Temp exception name isn't in format 'First Last'");
+            throw new InvalidNameFormatException();
     }
 }

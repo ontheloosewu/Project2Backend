@@ -1,4 +1,4 @@
-package aspects;
+package dev.thebrogrammers.aspects;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,5 +17,5 @@ public class LoggingAspect
     public void logRequest(){logger.info("Request Handled");}
 
     @Pointcut("within(dev.thebrogrammers.controllers..*)")
-    private void logJP(){};
+    private void logJP(){}
 }

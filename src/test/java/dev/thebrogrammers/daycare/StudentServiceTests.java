@@ -1,35 +1,59 @@
 package dev.thebrogrammers.daycare;
 
+
 import dev.thebrogrammers.entities.Student;
-import dev.thebrogrammers.services.StudentService;
+import dev.thebrogrammers.exceptions.InvalidNameFormatException;
+import dev.thebrogrammers.repos.StudentRepo;
+import dev.thebrogrammers.services.StudentServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @SpringBootTest
 @Transactional
-public class StudentServiceTests
-{
-    @Autowired
-    StudentService studentService;
+public class StudentServiceTests {
+
+    @InjectMocks
+    StudentServiceImpl studentService;
+
+    @Mock
+    StudentRepo studentRepo;
+
 
     @Test
-    void add_student_test()
-    {
-        Student student = new Student(0, "StudentFirst", "StudentLast", "guardianuser");
-        Student savedStudent =  studentService.registerStudent(student);
-        Assertions.assertNotEquals(0, savedStudent.getsId());
+    void delete_student_test() {
+
+//        Grade grade = new Grade(0, 1, 450000000, "Student has eaten all his vegetables", Behavior.EXCELLENT);
+//        Mockito.when(gradeRepo.findById(1)).thenReturn(Optional.of(grade));
+        Student student = new Student(1,"test", "student", "guardian email");
+        Mockito.when(studentRepo.findById(1)).thenReturn(Optional.of(student));
+        Assertions.assertTrue(studentService.deleteStudentById(1));
     }
 
     @Test
-    void get_student_by_name_test()
+    void delete_fail_student_id_not_found_test()
     {
-        Student student = new Student(0, "Alex", "Macklin-Rivera", "guardianuser");
-        Student saved = this.studentService.registerStudent(student);
+        Mockito.when(studentRepo.findById(1)).thenReturn(Optional.empty());
+        Assertions.assertFalse(studentService.deleteStudentById(1));
+    }
+
+
+    @Test
+    void get_student_by_name_test() {
+        Mockito.when(studentRepo.findByFirstNameAndLastName("Alex", "Macklin-Rivera")).thenReturn(new Student(0, "Alex", "Macklin-Rivera", "guardianuser"));
 
         Student retrievedStudent = this.studentService.getStudentByName("Alex Macklin-Rivera");
-        Assertions.assertEquals(saved.getsId(), retrievedStudent.getsId());
+        Assertions.assertEquals("Alex", retrievedStudent.getFirstName());
+    }
+
+    @Test
+    void fail_on_bad_student_name_test() {
+        Assertions.assertThrows(InvalidNameFormatException.class, () -> this.studentService.getStudentByName("Only Two Names Please"));
     }
 }
