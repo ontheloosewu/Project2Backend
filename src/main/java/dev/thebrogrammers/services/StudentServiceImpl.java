@@ -4,6 +4,8 @@ import dev.thebrogrammers.entities.Student;
 import dev.thebrogrammers.repos.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,5 +29,13 @@ public class StudentServiceImpl implements StudentService{
         } else {
             return false;
         }
+    }
+    @Override
+    public Student getStudentByName(String name) {
+        String[] names = name.split(" ");
+        if (names.length == 2)
+            return this.studentRepo.findByFirstNameAndLastName(names[0], names[1]);
+        else
+            throw new RuntimeException("Temp exception name isn't in format 'First Last'");
     }
 }
