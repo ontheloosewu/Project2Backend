@@ -22,7 +22,7 @@ public class StudentRepoTests {
         Student student1 = this.studentRepo.save(new Student(0, "first", "last", "guardian"));
         Student student2 = this.studentRepo.save(new Student(0, "first", "last", "guardian"));
         Student student3 = this.studentRepo.save(new Student(0, "first", "last", "guardian"));
-        this.studentRepo.deleteById(student1.getS_id());
+        this.studentRepo.deleteById(student1.getsId());
         List<Student> studentList = this.studentRepo.findAll();
         Assertions.assertEquals(2, studentList.size());
     }

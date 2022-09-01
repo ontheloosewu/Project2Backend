@@ -9,66 +9,66 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="s_id")
-    private int s_id;
+    private int sId;
 
     @Column(name="first_name")
-    private String first_name;
+    private String firstName;
 
     @Column(name="last_name")
-    private String last_name;
+    private String lastName;
 
     @Column(name="guardian_username")
-    private String guardian_username;
+    private String guardianUsername;
 
     public Student() {
     }
 
-    public Student(int s_id, String first_name, String last_name, String guardian_username) {
-        this.s_id = s_id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.guardian_username = guardian_username;
+    public Student(int sId, String firstName, String lastName, String guardianUsername) {
+        this.sId = sId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.guardianUsername = guardianUsername;
     }
 
-    public int getS_id() {
-        return s_id;
+    public int getsId() {
+        return sId;
     }
 
-    public void setS_id(int s_id) {
-        this.s_id = s_id;
+    public void setsId(int sId) {
+        this.sId = sId;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getGuardian_username() {
-        return guardian_username;
+    public String getGuardianUsername() {
+        return guardianUsername;
     }
 
-    public void setGuardian_username(String guardian_username) {
-        this.guardian_username = guardian_username;
+    public void setGuardianUsername(String guardianUsername) {
+        this.guardianUsername = guardianUsername;
     }
 
     @Override
     public String toString() {
         return "Student{" +
-                "s_id=" + s_id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", guardian_username='" + guardian_username + '\'' +
+                "s_id=" + sId +
+                ", first_name='" + firstName + '\'' +
+                ", last_name='" + lastName + '\'' +
+                ", guardian_username='" + guardianUsername + '\'' +
                 '}';
     }
 }

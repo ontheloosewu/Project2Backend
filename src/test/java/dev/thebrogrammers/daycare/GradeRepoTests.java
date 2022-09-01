@@ -24,7 +24,7 @@ public class GradeRepoTests {
     public void create_grade(){
         Student student = new Student(0,"First","Last","test_guardian");
         Student savedStudent = this.studentRepo.save(student);
-        Grade grade = new Grade(0, savedStudent.getS_id(), 450000000,"Student has eaten all his vegetables", Behavior.EXCELLENT);
+        Grade grade = new Grade(0, savedStudent.getsId(), 450000000,"Student has eaten all his vegetables", Behavior.EXCELLENT);
         Grade savedGrade = this.gradeRepo.save(grade);
         System.out.println(savedGrade);
         Assertions.assertNotEquals(0,savedGrade.getG_id());
