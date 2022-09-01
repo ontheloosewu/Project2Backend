@@ -29,4 +29,15 @@ public class GradeController {
         int sId = Integer.parseInt(id);
         return this.gradeService.getGradesByStudentId(sId);
     }
+
+    @DeleteMapping("/grades/{id}")
+    @ResponseBody
+    public String deleteGradeById(@PathVariable String id) {
+        boolean isRemoved = this.gradeService.deleteGradeById(Integer.parseInt(id));
+        if (isRemoved) {
+            return "Grade has been deleted.";
+        } else {
+            return "Grade was not found.";
+        }
+    }
 }
