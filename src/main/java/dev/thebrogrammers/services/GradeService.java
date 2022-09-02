@@ -10,4 +10,6 @@ public interface GradeService {
     List<Grade> getGradesByStudentId(int sId);
 
     boolean deleteGradeById(int gradeId);
+
+    Long deleteGradesByStudentId(int studentId);
 }

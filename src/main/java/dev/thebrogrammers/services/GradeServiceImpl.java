@@ -34,4 +34,9 @@ public class GradeServiceImpl implements GradeService {
             return false;
         }
     }
+
+    @Override
+    public Long deleteGradesByStudentId(int studentId) {
+        return this.gradeRepo.deleteBysId(studentId);
+    }
 }
