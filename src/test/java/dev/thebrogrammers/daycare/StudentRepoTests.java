@@ -27,4 +27,13 @@ public class StudentRepoTests {
         Assertions.assertEquals(2, studentList.size());
     }
 
+    @Test
+    public void get_all_students(){
+        this.studentRepo.save(new Student(0, "first", "last", "guardian"));
+        this.studentRepo.save(new Student(0, "first", "last", "guardian"));
+        this.studentRepo.save(new Student(0, "first", "last", "guardian"));
+        List<Student> studentList = this.studentRepo.findAll();
+        Assertions.assertTrue(studentList.size() >= 3);
+    }
+
 }
