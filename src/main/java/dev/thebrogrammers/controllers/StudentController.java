@@ -28,6 +28,10 @@ public class StudentController {
         return this.studentService.getStudentByName(name);
     }
 
+    @GetMapping("/students/{id}")
+    @ResponseBody
+    public Student getStudentById(@PathVariable String id) { return this.studentService.getStudentById(Integer.parseInt(id)); }
+
     @DeleteMapping("/students/{id}")
     @ResponseBody
     public String deleteStudentById(@PathVariable String id) {

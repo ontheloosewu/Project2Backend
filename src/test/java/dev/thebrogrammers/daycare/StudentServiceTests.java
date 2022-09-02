@@ -3,6 +3,7 @@ package dev.thebrogrammers.daycare;
 
 import dev.thebrogrammers.entities.Student;
 import dev.thebrogrammers.exceptions.InvalidNameFormatException;
+import dev.thebrogrammers.exceptions.StudentNotFoundException;
 import dev.thebrogrammers.repos.StudentRepo;
 import dev.thebrogrammers.services.StudentServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -50,6 +51,14 @@ public class StudentServiceTests {
 
         Student retrievedStudent = this.studentService.getStudentByName("Alex Macklin-Rivera");
         Assertions.assertEquals("Alex", retrievedStudent.getFirstName());
+    }
+
+    @Test
+    void get_nonexistent_student_by_id_test(){
+        Mockito.when(studentRepo.findById(1000)).thenReturn(Optional.empty());
+        Assertions.assertThrows(StudentNotFoundException.class, () -> {
+            this.studentService.getStudentById(1000);
+        });
     }
 
     @Test
