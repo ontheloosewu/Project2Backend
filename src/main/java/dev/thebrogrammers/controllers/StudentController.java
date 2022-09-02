@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
+@CrossOrigin
 public class StudentController {
     @Autowired
     StudentService studentService;
