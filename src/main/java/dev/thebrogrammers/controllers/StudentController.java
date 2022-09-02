@@ -1,6 +1,7 @@
 package dev.thebrogrammers.controllers;
 
 import dev.thebrogrammers.entities.Student;
+import dev.thebrogrammers.repos.StudentRepo;
 import dev.thebrogrammers.services.StudentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @Controller
 @CrossOrigin
 public class StudentController {
+
+    @Autowired
+    StudentRepo studentRepo;
     @Autowired
     StudentService studentService;
 
@@ -22,15 +28,13 @@ public class StudentController {
         return new ResponseEntity<Student>(this.studentService.registerStudent(body), HttpStatus.CREATED);
     }
 
-    @GetMapping("/students/{name}")
-    @ResponseBody
-    public Student getStudent(@PathVariable String name) {
-        return this.studentService.getStudentByName(name);
-    }
-
     @GetMapping("/students/{id}")
     @ResponseBody
     public Student getStudentById(@PathVariable String id) { return this.studentService.getStudentById(Integer.parseInt(id)); }
+
+    @GetMapping("/students")
+    @ResponseBody
+    public List<Student> getAllStudents() { return this.studentRepo.findAll(); }
 
     @DeleteMapping("/students/{id}")
     @ResponseBody
