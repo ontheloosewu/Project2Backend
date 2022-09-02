@@ -41,4 +41,10 @@ public class GradeController {
             return "Grade was not found.";
         }
     }
+
+    @DeleteMapping("/grades")
+    @ResponseBody
+    public Long deleteGradesByStudentId(@RequestParam String sId){
+        return this.gradeService.deleteGradesByStudentId(Integer.parseInt(sId));
+    }
 }
