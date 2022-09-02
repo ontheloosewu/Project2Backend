@@ -1,7 +1,6 @@
 package dev.thebrogrammers.services;
 
 import dev.thebrogrammers.entities.Student;
-import dev.thebrogrammers.exceptions.InvalidNameFormatException;
 import dev.thebrogrammers.exceptions.StudentNotFoundException;
 import dev.thebrogrammers.repos.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,14 +38,5 @@ public class StudentServiceImpl implements StudentService{
         } else {
             throw new StudentNotFoundException();
         }
-    }
-
-    @Override
-    public Student getStudentByName(String name) {
-        String[] names = name.split(" ");
-        if (names.length == 2)
-            return this.studentRepo.findByFirstNameAndLastName(names[0], names[1]);
-        else
-            throw new InvalidNameFormatException();
     }
 }

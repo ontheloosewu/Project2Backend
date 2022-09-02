@@ -1,6 +1,5 @@
 package dev.thebrogrammers.services;
 
-import dev.thebrogrammers.entities.Behavior;
 import dev.thebrogrammers.entities.Grade;
 import dev.thebrogrammers.repos.GradeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
