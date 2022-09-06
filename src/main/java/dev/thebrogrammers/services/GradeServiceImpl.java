@@ -1,7 +1,9 @@
 package dev.thebrogrammers.services;
 
 import dev.thebrogrammers.entities.Grade;
+import dev.thebrogrammers.exceptions.StudentNotFoundException;
 import dev.thebrogrammers.repos.GradeRepo;
+import dev.thebrogrammers.repos.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -13,10 +15,16 @@ public class GradeServiceImpl implements GradeService {
     @Autowired
     GradeRepo gradeRepo;
 
+    @Autowired
+    StudentRepo studentRepo;
+
     @Override
     public Grade registerGrade(Grade grade) {
-        Grade savedGrade = this.gradeRepo.save(grade);
-        return savedGrade;
+        if(studentRepo.findById(grade.getsId()).isPresent()) {
+            return this.gradeRepo.save(grade);
+        } else {
+            throw new StudentNotFoundException();
+        }
     }
 
     @Override
