@@ -9,6 +9,7 @@ name: Java CI with Gradle
 
 env:
   PROJECT2_DB: ${{secrets.PROJECT2_DB}}
+  PROJECT_2_MONGO_DB: ${{secrets.PROJECT_2_MONGO_DB}}
 
 on:
   push:
