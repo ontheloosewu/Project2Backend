@@ -32,7 +32,6 @@ public class StudentController {
     @ResponseBody
     public ResponseEntity<Student> registerStudent(@RequestHeader("auth") String jwt, @RequestBody Student body) {
 
-
         String role = validateJWT(jwt);
 
         if (role.equals("teacher")) {
@@ -74,6 +73,7 @@ public class StudentController {
     @DeleteMapping("/students/{id}")
     @ResponseBody
     public ResponseEntity<String> deleteStudentById(@RequestHeader("auth") String jwt, @PathVariable String id) {
+
 
         String role = validateJWT(jwt);
         if (role.equals("teacher")) {

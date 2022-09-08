@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
@@ -15,8 +16,13 @@ class DaycareApplicationTests {
 
 	@Autowired
 	AppUserRepo appUserRepo;
+
+	@Autowired
+	JmsTemplate jmsTemplate;
 	@Test
 	void contextLoads() {
+		String message = "test";
+		this.jmsTemplate.convertAndSend("message-queue",message);
 	}
 
 	@Test
