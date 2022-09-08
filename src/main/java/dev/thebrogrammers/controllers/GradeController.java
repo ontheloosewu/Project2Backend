@@ -7,7 +7,6 @@ import dev.thebrogrammers.exceptions.InsufficientPermissionException;
 import dev.thebrogrammers.exceptions.UnauthenticatedException;
 import dev.thebrogrammers.services.GradeService;
 import dev.thebrogrammers.services.JwtService;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,15 +52,15 @@ public class GradeController {
 
     @DeleteMapping("/grades/{id}")
     @ResponseBody
-    public String deleteGradeById(@RequestHeader("auth") String jwt, @PathVariable String id) {
+    public ResponseEntity<String> deleteGradeById(@RequestHeader("auth") String jwt, @PathVariable String id) {
 
         String role = validateJWT(jwt);
         if (role.equals("teacher")) {
             boolean isRemoved = this.gradeService.deleteGradeById(Integer.parseInt(id));
             if (isRemoved) {
-                return JSONObject.quote("Grade has been deleted.");
+                return new ResponseEntity<String>("Grade has been deleted.", HttpStatus.OK);
             } else {
-                return  JSONObject.quote("Grade was not found.");
+                return new ResponseEntity<String>("Grade was not found.", HttpStatus.NOT_FOUND);
             }
         } else {
             throw new InsufficientPermissionException();
