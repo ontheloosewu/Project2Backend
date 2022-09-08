@@ -2,6 +2,8 @@ package dev.thebrogrammers.services;
 
 import dev.thebrogrammers.entities.Student;
 
+import java.util.List;
+
 public interface StudentService {
 
     Student registerStudent(Student student);
@@ -9,4 +11,6 @@ public interface StudentService {
     boolean deleteStudentById(int id);
 
     Student getStudentById(int id);
+
+    List<Student> getStudentsByGuardianUsername(String guardianUsername);
 }

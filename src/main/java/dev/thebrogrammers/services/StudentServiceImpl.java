@@ -6,6 +6,8 @@ import dev.thebrogrammers.repos.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,5 +48,10 @@ public class StudentServiceImpl implements StudentService{
         } else {
             throw new StudentNotFoundException();
         }
+    }
+
+    @Override
+    public List<Student> getStudentsByGuardianUsername(String guardianUsername) {
+        return this.studentRepo.findByguardianUsername(guardianUsername);
     }
 }
