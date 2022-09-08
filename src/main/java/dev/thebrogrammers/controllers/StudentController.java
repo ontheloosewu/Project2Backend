@@ -9,6 +9,7 @@ import dev.thebrogrammers.repos.StudentRepo;
 import dev.thebrogrammers.services.JwtService;
 import dev.thebrogrammers.services.StudentService;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -80,9 +81,9 @@ public class StudentController {
         if (role.equals("teacher")) {
             boolean isRemoved = this.studentService.deleteStudentById(Integer.parseInt(id));
             if (isRemoved) {
-                return "Student has been deleted.";
+                return JSONObject.quote("Success");
             } else {
-                return "Student was not found.";
+                return JSONObject.quote("Student was not found.");
             }
         } else {
             throw new InsufficientPermissionException();
