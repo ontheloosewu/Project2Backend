@@ -4,6 +4,7 @@ import dev.thebrogrammers.entities.Student;
 import dev.thebrogrammers.exceptions.StudentNotFoundException;
 import dev.thebrogrammers.repos.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
@@ -12,10 +13,15 @@ public class StudentServiceImpl implements StudentService{
 
     @Autowired
     StudentRepo studentRepo;
+
+    @Autowired
+    JmsTemplate jmsTemplate;
     
     @Override
     public Student registerStudent(Student student)
     {
+        String message = "Student " + student.getFirstName() + " " + student.getLastName() + " has been added";
+        jmsTemplate.convertAndSend("message-queue",message);
         return this.studentRepo.save(student);  // no business rules at this time. Assuming front end checks first/last name not null
     }
 
@@ -23,6 +29,8 @@ public class StudentServiceImpl implements StudentService{
     public boolean deleteStudentById(int id) {
         Optional<Student> student = this.studentRepo.findById(id);
         if(student.isPresent()){
+            String message = "Student " + student.get().getFirstName() + " " + student.get().getLastName() + " has been deleted";
+            jmsTemplate.convertAndSend("message-queue",message);
             this.studentRepo.delete(student.get());
             return true;
         } else {
