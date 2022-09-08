@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
@@ -24,6 +25,9 @@ public class StudentServiceTests {
 
     @Mock
     StudentRepo studentRepo;
+
+    @Mock
+    JmsTemplate jmsTemplate;
 
 
     @Test
