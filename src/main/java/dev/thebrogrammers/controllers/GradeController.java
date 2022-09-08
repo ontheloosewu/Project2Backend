@@ -7,6 +7,8 @@ import dev.thebrogrammers.exceptions.InsufficientPermissionException;
 import dev.thebrogrammers.exceptions.UnauthenticatedException;
 import dev.thebrogrammers.services.GradeService;
 import dev.thebrogrammers.services.JwtService;
+import org.apache.coyote.Response;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,9 +60,9 @@ public class GradeController {
         if (role.equals("teacher")) {
             boolean isRemoved = this.gradeService.deleteGradeById(Integer.parseInt(id));
             if (isRemoved) {
-                return "Grade has been deleted.";
+                return JSONObject.quote("Grade has been deleted.");
             } else {
-                return "Grade was not found.";
+                return  JSONObject.quote("Grade was not found.");
             }
         } else {
             throw new InsufficientPermissionException();
