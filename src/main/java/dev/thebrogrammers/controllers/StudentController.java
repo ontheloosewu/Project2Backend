@@ -65,6 +65,10 @@ public class StudentController {
 
         if (role.equals("teacher")) {
             return this.studentRepo.findAll();
+        } else if (role.equals("guardian")){
+            List<Student> studentList = this.studentService.getStudentsByGuardianUsername(JWT.decode(jwt).getClaim("username").asString());
+            System.out.println(studentList);
+            return studentList;
         } else {
             throw new InsufficientPermissionException();
         }

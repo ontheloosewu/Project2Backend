@@ -35,5 +35,4 @@ public class StudentRepoTests {
         List<Student> studentList = this.studentRepo.findAll();
         Assertions.assertTrue(studentList.size() >= 3);
     }
-
 }
