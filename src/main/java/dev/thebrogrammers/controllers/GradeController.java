@@ -7,7 +7,6 @@ import dev.thebrogrammers.exceptions.InsufficientPermissionException;
 import dev.thebrogrammers.exceptions.UnauthenticatedException;
 import dev.thebrogrammers.services.GradeService;
 import dev.thebrogrammers.services.JwtService;
-import org.apache.coyote.Response;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
