@@ -8,6 +8,7 @@ import dev.thebrogrammers.exceptions.UnauthenticatedException;
 import dev.thebrogrammers.repos.StudentRepo;
 import dev.thebrogrammers.services.JwtService;
 import dev.thebrogrammers.services.StudentService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -76,16 +77,16 @@ public class StudentController {
 
     @DeleteMapping("/students/{id}")
     @ResponseBody
-    public ResponseEntity<String> deleteStudentById(@RequestHeader("auth") String jwt, @PathVariable String id) {
+    public String deleteStudentById(@RequestHeader("auth") String jwt, @PathVariable String id) {
 
 
         String role = validateJWT(jwt);
         if (role.equals("teacher")) {
             boolean isRemoved = this.studentService.deleteStudentById(Integer.parseInt(id));
             if (isRemoved) {
-                return new ResponseEntity<String>("Success", HttpStatus.OK);
+                return JSONObject.quote("Success");
             } else {
-                return new ResponseEntity<String>("Student was not found.", HttpStatus.NOT_FOUND);
+                return JSONObject.quote("Student was not found.");
             }
         } else {
             throw new InsufficientPermissionException();

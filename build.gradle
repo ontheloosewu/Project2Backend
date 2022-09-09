@@ -28,6 +28,7 @@ dependencies {
 	implementation 'com.azure.spring:spring-cloud-azure-starter'
 	//	https://mvnrepository.com/artifact/com.azure.spring/azure-spring-boot-starter-servicebus-jms
 	implementation group: 'com.azure.spring', name: 'azure-spring-boot-starter-servicebus-jms', version: '4.0.0'
+	implementation group: 'org.json', name: 'json', version: '20220320'
 
 }
 
