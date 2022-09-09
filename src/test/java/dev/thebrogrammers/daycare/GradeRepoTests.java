@@ -43,6 +43,18 @@ public class GradeRepoTests {
         Assertions.assertEquals(savedStudent.getsId(), savedGrade.getsId());
         System.out.println(savedStudent);
         System.out.println(savedGrade);
-        }
-
     }
+
+    @Test
+    public void delete_grades_by_student_id(){
+        Student student = new Student(0, "Alex", "Macklin-Rivera", "guardianuser");
+        Student savedStudent = this.studentRepo.save(student);
+        Grade grade = new Grade(0, savedStudent.getsId(), 450000000, "Student has eaten all his vegetables", Behavior.SATISFACTORY);
+        Grade grade2 = new Grade(0, savedStudent.getsId(), 450000000, "Student has eaten all his vegetables", Behavior.SATISFACTORY);
+        Grade grade3 = new Grade(0, savedStudent.getsId(), 450000000, "Student has eaten all his vegetables", Behavior.SATISFACTORY);
+        this.gradeRepo.save(grade);
+        this.gradeRepo.save(grade2);
+        this.gradeRepo.save(grade3);
+        Assertions.assertEquals(3l, this.gradeRepo.deleteBysId(savedStudent.getsId()));
+    }
+}
