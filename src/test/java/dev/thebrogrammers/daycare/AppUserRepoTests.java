@@ -1,9 +1,9 @@
 package dev.thebrogrammers.daycare;
 
-import dev.thebrogrammers.dtos.LoginCredentials;
 import dev.thebrogrammers.entities.AppUser;
 import dev.thebrogrammers.repos.AppUserRepo;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +17,7 @@ public class AppUserRepoTests {
     AppUserRepo appUserRepo;
 
     @Test
+    @Disabled
     void find_by_username_test(){
         AppUser sam = new AppUser(null, "appusertest", "pa$$word", "teacher");
         appUserRepo.save(sam);
