@@ -2,9 +2,9 @@ package dev.thebrogrammers.dtos;
 
 public class TokenAndRole
 {
-    String jwt;
+    private String jwt;
 
-    String role;
+    private String role;
 
     public TokenAndRole() {
     }
