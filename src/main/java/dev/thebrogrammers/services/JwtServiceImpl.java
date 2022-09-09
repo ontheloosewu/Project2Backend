@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class JwtServiceImpl implements JwtService{
 
-    private Algorithm algorithm = Algorithm.HMAC256("some string we'll agree on I guess");
+    private final Algorithm algorithm = Algorithm.HMAC256("some string we'll agree on I guess");
 
     @Override
     public String createJWTWithUsernameAndRole(String username, String role) {
