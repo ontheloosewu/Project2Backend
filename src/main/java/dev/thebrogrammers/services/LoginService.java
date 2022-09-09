@@ -1,8 +1,9 @@
 package dev.thebrogrammers.services;
 
 import dev.thebrogrammers.dtos.LoginCredentials;
+import dev.thebrogrammers.dtos.TokenAndRole;
 
 public interface LoginService {
 
-    String authenticateUser(LoginCredentials loginCredentials);
+    TokenAndRole authenticateUser(LoginCredentials loginCredentials);
 }

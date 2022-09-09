@@ -1,6 +1,7 @@
 package dev.thebrogrammers.services;
 
 import dev.thebrogrammers.dtos.LoginCredentials;
+import dev.thebrogrammers.dtos.TokenAndRole;
 import dev.thebrogrammers.entities.AppUser;
 import dev.thebrogrammers.exceptions.PasswordMismatchException;
 import dev.thebrogrammers.repos.AppUserRepo;
@@ -24,7 +25,7 @@ public class LoginServiceImpl implements  LoginService{
     JmsTemplate jmsTemplate;
 
     @Override
-    public String authenticateUser(LoginCredentials loginCredentials)
+    public TokenAndRole authenticateUser(LoginCredentials loginCredentials)
     {
         AppUser user = appUserRepo.findByUsername(loginCredentials.getUsername());
 
@@ -36,6 +37,6 @@ public class LoginServiceImpl implements  LoginService{
         String message = "Login " + loginCredentials.getUsername() + " " + LocalDateTime.now();
         jmsTemplate.convertAndSend("message-queue",message);
 
-        return jwtService.createJWTWithUsernameAndRole(user.getUsername(), user.getRole());
+        return new TokenAndRole(jwtService.createJWTWithUsernameAndRole(user.getUsername(), user.getRole()),user.getRole());
     }
 }
